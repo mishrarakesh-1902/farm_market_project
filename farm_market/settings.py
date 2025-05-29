@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-z8%kj_kgsxazhzg5d5#4w_^)3v88!pi!w419v@f412qq#td!xe
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['farm-market-project-4.onrender.com']
 
 
 # Application definition
