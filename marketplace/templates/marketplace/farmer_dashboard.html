@@ -1,11 +1,9 @@
-{% load static %}
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Farmer Dashboard | Farm Market</title>
+  <title>AI-Powered Farm Market</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   <style>
     * {
@@ -16,7 +14,7 @@
 
     body {
       font-family: 'Poppins', sans-serif;
-      background-color: #f9fff9;
+      background: #f5f9f6;
       color: #333;
     }
 
@@ -24,135 +22,203 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      background-color: #2e8b57;
-      padding: 15px 30px;
+      background: #2e8b57;
+      padding: 15px 20px;
       color: white;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
       flex-wrap: wrap;
     }
 
-    nav .logo {
+    .logo {
       font-size: 1.8rem;
       font-weight: bold;
+    }
+
+    .menu-toggle {
+      display: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 25px;
+      flex-wrap: wrap;
     }
 
     nav ul {
       list-style: none;
       display: flex;
-      flex-wrap: wrap;
       gap: 20px;
+      flex-wrap: wrap;
     }
 
     nav ul li a {
       text-decoration: none;
       color: white;
+      padding: 6px 12px;
+      border-radius: 6px;
       font-weight: 500;
-      transition: color 0.3s ease;
+      transition: background 0.3s;
     }
 
     nav ul li a:hover {
-      color: #ffd700;
+      background-color: #1d5233;
+    }
+
+    .auth-buttons {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .auth-buttons a {
+      text-decoration: none;
+      color: white;
+      padding: 6px 14px;
+      background: #276b45;
+      border-radius: 30px;
+      font-size: 0.9rem;
+      transition: background 0.3s;
+    }
+
+    .auth-buttons a:hover {
+      background: #1d5233;
+    }
+
+    .welcome-text {
+      font-weight: 500;
     }
 
     .hero {
-      background: linear-gradient(to right, #e7fce3, #ffffff);
-      padding: 80px 20px 60px;
+      padding: 80px 30px;
       text-align: center;
+      background: linear-gradient(to right, #e8f5e9, #ffffff);
     }
 
     .hero h1 {
-      font-size: 2.8rem;
+      font-size: 3rem;
       color: #2e7d32;
-      margin-bottom: 15px;
+      margin-bottom: 20px;
     }
 
     .hero p {
       font-size: 1.1rem;
+      max-width: 750px;
+      margin: auto;
       color: #555;
-      max-width: 700px;
-      margin: 0 auto 30px;
+      line-height: 1.6;
     }
 
     .cta-btn {
-      padding: 12px 25px;
-      font-size: 1rem;
-      border: none;
-      border-radius: 25px;
-      background-color: #2e8b57;
+      margin-top: 30px;
+      padding: 14px 36px;
+      background: #2e8b57;
       color: white;
+      border: none;
+      border-radius: 30px;
+      font-size: 1rem;
       cursor: pointer;
-      transition: background 0.3s ease;
+      transition: 0.3s;
     }
 
     .cta-btn:hover {
-      background-color: #256b45;
+      background: #276b45;
     }
 
     .features {
+      padding: 60px 20px;
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
       gap: 30px;
-      padding: 60px 30px;
     }
 
     .card {
       background: white;
       padding: 25px;
-      border-radius: 16px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-      text-align: center;
+      border-radius: 20px;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.1);
       transition: 0.3s;
+      text-align: center;
     }
 
     .card:hover {
       transform: translateY(-5px);
-      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+      box-shadow: 0 12px 25px rgba(0,0,0,0.15);
     }
 
     .card h3 {
       color: #2e8b57;
+      font-size: 1.4rem;
       margin-bottom: 10px;
-      font-size: 1.3rem;
     }
 
     .card p {
-      font-size: 0.95rem;
       color: #555;
+      font-size: 0.95rem;
+      line-height: 1.5;
+      margin-bottom: 15px;
     }
 
     .card a {
       display: inline-block;
-      margin-top: 15px;
-      padding: 10px 20px;
-      font-size: 0.9rem;
-      background-color: #2e8b57;
-      color: white;
-      border-radius: 22px;
       text-decoration: none;
+      background: #2e8b57;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 25px;
+      font-size: 0.95rem;
       transition: 0.3s;
     }
 
     .card a:hover {
-      background-color: #1d603e;
+      background: #276b45;
     }
 
     footer {
-      background-color: #2e8b57;
-      color: white;
+      background: #2e8b57;
+      color: #fff;
       text-align: center;
       padding: 20px;
-      margin-top: 40px;
-      font-size: 0.9rem;
+      margin-top: 60px;
+      font-size: 0.95rem;
+    }
+
+    /* Responsive Styles */
+    @media (max-width: 992px) {
+      .hero h1 {
+        font-size: 2.5rem;
+      }
     }
 
     @media (max-width: 768px) {
-      nav {
+      .nav-links {
         flex-direction: column;
-        align-items: flex-start;
+        width: 100%;
+        display: none;
+      }
+
+      .nav-links.show {
+        display: flex;
+      }
+
+      .menu-toggle {
+        display: block;
       }
 
       nav ul {
         flex-direction: column;
         gap: 10px;
+        width: 100%;
+      }
+
+      .auth-buttons {
+        flex-direction: column;
+        align-items: flex-start;
+        width: 100%;
         margin-top: 10px;
       }
 
@@ -163,63 +229,85 @@
       .hero p {
         font-size: 1rem;
       }
+
+      .cta-btn {
+        padding: 12px 26px;
+        font-size: 0.9rem;
+      }
     }
   </style>
 </head>
 <body>
 
-  <!-- Navigation -->
+  <!-- Navbar -->
   <nav>
     <div class="logo">Farm Market</div>
-    <ul>
-      <li><a href="{% url 'home' %}">Home</a></li>
-      <li><a href="{% url 'upload_product' %}">Sell Product</a></li>
-      <li><a href="{% url 'crop_prices' %}">Market Price</a></li>
-      <li><a href="{% url 'contact' %}">Contact</a></li>
-      {% if user.is_authenticated %}
-        <li><a href="{% url 'logout' %}">Logout</a></li>
-        {% if user.farmer_products.exists %}
-          <li><a href="{% url 'farmer_orders' %}">My Orders</a></li>
+    <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+    <div class="nav-links" id="navLinks">
+      <ul>
+        <li><a href="{% url 'farmer_dashboard' %}">Home</a></li>
+        <li><a href="{% url 'upload_product' %}">Register Product</a></li>
+        <li><a href="{% url 'crop_prices' %}">Pricing</a></li>
+        <li><a href="{% url 'my_products' %}">My Products</a></li>
+        <li><a href="{% url 'contact' %}">Contact</a></li>
+        {% if user.is_authenticated and user.farmer_products.exists %}
+        <li><a href="{% url 'farmer_orders' %}">My Orders</a></li>
         {% endif %}
-      {% endif %}
-    </ul>
+      </ul>
+      <div class="auth-buttons">
+        {% if user.is_authenticated %}
+          <span class="welcome-text">Welcome, {{ user.username }}!</span>
+          <a href="{% url 'logout' %}">Logout</a>
+        {% else %}
+          <a href="{% url 'register' %}">Register</a>
+          <a href="{% url 'login' %}">Login</a>
+        {% endif %}
+      </div>
+    </div>
   </nav>
 
-  <!-- Hero Section -->
+  <!-- Hero -->
   <section class="hero">
-    <h1>Welcome, {{ user.username }}</h1>
-    <p>Use our AI tools to sell your crops directly, get crop predictions, and plan your yield smartly.</p>
-    <button class="cta-btn" onclick="location.href='{% url 'upload_product' %}'">Upload Your Crop</button>
+    <h1>Empowering Farmers with AI</h1>
+    <p>Our platform connects farmers directly to buyers, provides real-time market insights, and reduces crop wastage using smart AI tools.</p>
+    <button class="cta-btn">Get Started</button>
   </section>
 
   <!-- Features -->
   <section class="features">
     <div class="card">
-      <h3>Direct Selling</h3>
-      <p>Connect with verified buyers and sell your crops directly through our platform.</p>
-      <a href="{% url 'product_list' %}">Go to Marketplace</a>
+      <h3>🚜 Direct Selling</h3>
+      <p>AI-powered tools connect farmers directly to wholesale and retail buyers, eliminating middlemen and increasing profit margins.</p>
+      <a href="{% url 'product_list' %}">Explore Now</a>
     </div>
     <div class="card">
-      <h3>Best Crop Suggestion</h3>
-      <p>Use AI to find the best crop based on your soil type, weather, and region.</p>
-      <a href="{% url 'predict_crop' %}">Try Now</a>
+      <h3>🌾 Predict Best Crop</h3>
+      <p>Analyze soil health, climate, and regional data to choose the right crop for better yields.</p>
+      <a href="{% url 'predict_crop' %}">Predict</a>
     </div>
     <div class="card">
-      <h3>Yield Estimator</h3>
-      <p>Estimate the yield of your crop before harvest to make better planning decisions.</p>
-      <a href="{% url 'yeild_predict' %}">Estimate Yield</a>
+      <h3>📈 Predict Crop Yield</h3>
+      <p>Estimate production based on weather, soil, and input data for smart planning and management.</p>
+      <a href="{% url 'yeild_predict' %}">Predict</a>
     </div>
     <div class="card">
-      <h3>Verified Inputs</h3>
-      <p>Purchase government-approved seeds, fertilizers, and tools at best prices.</p>
-      <a href="#">Coming Soon</a>
+      <h3>🧪 Quality Inputs</h3>
+      <p>Purchase verified seeds, fertilizers, and pesticides directly from trusted suppliers.</p>
     </div>
   </section>
 
   <!-- Footer -->
   <footer>
-    &copy; 2025 Farm Market | Empowering Farmers with AI & Direct Access to Buyers
+    <p>&copy; 2025 Farm Market Platform. Designed to empower India's backbone — our farmers.</p>
   </footer>
+
+  <!-- Toggle Menu Script -->
+  <script>
+    function toggleMenu() {
+      const navLinks = document.getElementById('navLinks');
+      navLinks.classList.toggle('show');
+    }
+  </script>
 
 </body>
 </html>
