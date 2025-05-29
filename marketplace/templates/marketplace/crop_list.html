@@ -1,0 +1,9 @@
+<!-- templates/marketplace/crop_list.html -->
+<h1>Available Crops</h1>
+<ul>
+    {% for crop in crops %}
+        <li>
+            <a href="{% url 'crop_detail' crop.id %}">{{ crop.name }} - ₹{{ crop.price }} - {{ crop.quantity }} kg</a>
+        </li>
+    {% endfor %}
+</ul>

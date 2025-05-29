@@ -1,0 +1,54 @@
+<!-- templates/farmer/my_products.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My Products</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 text-gray-800">
+
+    <div class="max-w-6xl mx-auto py-10 px-4">
+        <!-- Header -->
+        <div class="flex justify-between items-center mb-6">
+            <h2 class="text-3xl font-bold text-green-700">🌾 My Products</h2>
+            <a href="{% url 'farmer_dashboard' %}" class="text-white bg-green-600 hover:bg-green-700 font-semibold py-2 px-4 rounded">
+                🏠 Home
+            </a>
+        </div>
+
+        <!-- Product Table -->
+        <div class="overflow-x-auto bg-white shadow rounded-lg">
+            <table class="min-w-full text-sm text-left">
+                <thead class="bg-green-600 text-white uppercase tracking-wider">
+                    <tr>
+                        <th class="px-6 py-3">Name</th>
+                        <th class="px-6 py-3">Price/Unit</th>
+                        <th class="px-6 py-3">Quantity</th>
+                        <th class="px-6 py-3">Actions</th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-gray-200">
+                    {% for product in products %}
+                    <tr class="hover:bg-green-50 transition">
+                        <td class="px-6 py-4 font-medium">{{ product.name }}</td>
+                        <td class="px-6 py-4">₹{{ product.price_per_unit }}</td>
+                        <td class="px-6 py-4">{{ product.quantity }}</td>
+                       <td class="px-6 py-4">
+                            <a href="{% url 'edit_product' product.id %}" class="inline-block bg-blue-500 hover:bg-blue-600 text-white text-sm font-semibold py-1.5 px-4 rounded-full shadow transition duration-200">
+                                    ✏️ Edit
+                            </a>
+                       </td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="4" class="px-6 py-4 text-center text-gray-500">You haven't added any products yet.</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</body>
+</html>
