@@ -117,7 +117,6 @@
       margin-top: 30px;
       padding: 14px 36px;
       background: #2e8b57;
-      color: white;
       border: none;
       border-radius: 30px;
       font-size: 1rem;
@@ -125,24 +124,15 @@
       transition: 0.3s;
     }
 
+    .cta-btn a {
+      color: white;
+      text-decoration: none;
+    }
+
     .cta-btn:hover {
       background: #276b45;
     }
 
-<<<<<<< HEAD
-=======
-    .cta-btn a {
-      display: inline-block;
-      text-decoration: none;
-      background: #2e8b57;
-      color: white;
-      padding: 10px 20px;
-      border-radius: 25px;
-      transition: 0.3s;
-      font-size: 0.9rem;
-    }
-
->>>>>>> 28c09ad (Updated Django project with new changes)
     .features {
       padding: 60px 20px;
       display: grid;
@@ -261,10 +251,7 @@
       <ul>
         <li><a href="{% url 'farmer_dashboard' %}">Home</a></li>
         <li><a href="{% url 'upload_product' %}">Register Product</a></li>
-<<<<<<< HEAD
-        <li><a href="{% url 'crop_prices' %}">Pricing</a></li>
-=======
->>>>>>> 28c09ad (Updated Django project with new changes)
+        
         <li><a href="{% url 'my_products' %}">My Products</a></li>
         <li><a href="{% url 'contact' %}">Contact</a></li>
         {% if user.is_authenticated and user.farmer_products.exists %}
