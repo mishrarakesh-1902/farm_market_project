@@ -130,8 +130,19 @@
 
         <!-- 🏠 Home Button -->
         <div class="home-button">
+        {% if user.is_authenticated %}
+        {% if user.userprofile.role == "farmer" %}
+            <a href="{% url 'farmer_dashboard' %}">🏠 Home</a>
+        {% elif user.userprofile.role == "buyer" %}
+            <a href="{% url 'buyer_dashboard' %}">🏠 Home</a>
+        {% else %}
             <a href="{% url 'home' %}">🏠 Home</a>
+        {% endif %}
+        {% else %}
+            <a href="{% url 'home' %}">🏠 Home</a>
+        {% endif %}
         </div>
+
 
         <h2>🌾 Predict Best Crop for Your Soil</h2>
 

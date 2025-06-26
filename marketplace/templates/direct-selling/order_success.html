@@ -30,22 +30,26 @@
       font-size: 18px;
     }
 
-    .home-btn {
-      margin-top: 25px;
-      display: inline-block;
-      padding: 10px 22px;
-      font-size: 16px;
-      background-color: #2e7d32;
-      color: white;
-      border: none;
-      border-radius: 8px;
-      text-decoration: none;
-      transition: background-color 0.3s ease;
-    }
+    /* Home button style */
+        .home-button {
+            text-align: center;
+            margin-bottom: 20px;
+        }
 
-    .home-btn:hover {
-      background-color: #1b5e20;
-    }
+        .home-button a {
+            background-color: #2e7d32;
+            color: white;
+            padding: 10px 18px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+            transition: background-color 0.3s ease;
+        }
+
+        .home-button a:hover {
+            background-color: #1b5e20;
+        }
   </style>
 </head>
 <body>
@@ -53,7 +57,20 @@
   <div class="success-box">
     <h2>🎉 Order Placed Successfully!</h2>
     <p>Thank you for your order. We'll process it shortly.</p>
-    <a href="{% url 'home' %}" class="home-btn">Back to Home</a>
+     <div class="home-button">
+        {% if user.is_authenticated %}
+        {% if user.userprofile.role == "farmer" %}
+            <a href="{% url 'farmer_dashboard' %}">🏠 Home</a>
+        {% elif user.userprofile.role == "buyer" %}
+            <a href="{% url 'buyer_dashboard' %}">🏠 Home</a>
+        {% else %}
+            <a href="{% url 'home' %}">🏠 Home</a>
+        {% endif %}
+        {% else %}
+            <a href="{% url 'home' %}">🏠 Home</a>
+        {% endif %}
+        </div>
+
   </div>
 
 </body>
