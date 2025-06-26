@@ -64,9 +64,8 @@ nbformat==5.10.4
 nest-asyncio==1.6.0
 notebook==7.3.2
 notebook_shim==0.2.4
-numpy==2.2.6
-opencv-contrib-python==4.11.0.86
-opencv-python==4.11.0.86
+numpy==1.26.4
+opencv-python-headless==4.11.0.86
 overrides==7.7.0
 packaging==24.2
 pandas==2.2.3
@@ -93,8 +92,8 @@ requests==2.32.3
 rfc3339-validator==0.1.4
 rfc3986-validator==0.1.1
 rpds-py==0.22.3
-scikit-learn==1.6.1
-scipy==1.15.3
+scikit-learn==1.4.2
+scipy==1.11.4
 Send2Trash==1.8.3
 setuptools==75.8.0
 six==1.17.0
