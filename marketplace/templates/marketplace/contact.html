@@ -66,12 +66,12 @@
             text-align: center;
         }
 
-        .home-link {
+        .home-button {
             text-align: right;
             margin-bottom: 20px;
         }
 
-        .home-link a {
+        .home-button a {
             background-color: #2e7d32;
             color: white;
             padding: 10px 18px;
@@ -80,7 +80,7 @@
             font-weight: bold;
         }
 
-        .home-link a:hover {
+        .home-button a:hover {
             background-color: #1b5e20;
         }
     </style>
@@ -88,17 +88,27 @@
 <body>
     <div class="container">
 
-        <div class="home-link">
+<div class="home-button">
+          {% if user.is_authenticated %}
+          {% if user.userprofile.role == "farmer" %}
+            <a href="{% url 'farmer_dashboard' %}">🏠 Home</a>
+          {% elif user.userprofile.role == "buyer" %}
+            <a href="{% url 'buyer_dashboard' %}">🏠 Home</a>
+          {% else %}
             <a href="{% url 'home' %}">🏠 Home</a>
-        </div>
+          {% endif %}
+          {% else %}
+            <a href="{% url 'home' %}">🏠 Home</a>
+          {% endif %}
+          </div>
 
         <h2>📩 Contact Us</h2>
 
-        {% if messages %}
+        <!-- {% if messages %}
             {% for message in messages %}
                 <div class="success">{{ message }}</div>
             {% endfor %}
-        {% endif %}
+        {% endif %} -->
 
         <form method="post">
             {% csrf_token %}

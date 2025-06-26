@@ -61,8 +61,8 @@
     <td>{{ item.product.price_per_unit }}</td>
     <td>{{ item.item_total_price }}</td>
     <td>
-      <a href="{% url 'increase_quantity' item.id %}">+</a>
       <a href="{% url 'decrease_quantity' item.id %}">-</a>
+      <a href="{% url 'increase_quantity' item.id %}">+</a>
       <a href="{% url 'delete_cart_item' item.id %}">Remove</a>
     </td>
   </tr>

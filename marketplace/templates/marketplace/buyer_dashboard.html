@@ -18,13 +18,12 @@
       color: #333;
     }
 
-    /* Navbar */
     nav {
       display: flex;
       justify-content: space-between;
       align-items: center;
       background: #2e8b57;
-      padding: 15px 40px;
+      padding: 15px 20px;
       color: white;
       flex-wrap: wrap;
       position: sticky;
@@ -37,20 +36,31 @@
       font-weight: bold;
     }
 
-    nav .nav-links {
+    .menu-toggle {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+    }
+
+    .menu-toggle span {
+      background: white;
+      height: 3px;
+      width: 25px;
+      margin: 4px 0;
+      border-radius: 2px;
+    }
+
+    .nav-links {
       display: flex;
       align-items: center;
-      gap: 30px;
+      gap: 25px;
     }
 
     nav ul {
       list-style: none;
       display: flex;
-      gap: 25px;
-    }
-
-    nav ul li {
-      transition: 0.3s;
+      gap: 20px;
+      flex-wrap: wrap;
     }
 
     nav ul li a {
@@ -69,6 +79,7 @@
     .auth-buttons {
       display: flex;
       gap: 10px;
+      align-items: center;
     }
 
     .auth-buttons a {
@@ -87,26 +98,55 @@
 
     .welcome-text {
       color: #fff;
-      margin-left: 15px;
       font-weight: 500;
+    }
+
+    /* Responsive Navbar */
+    @media (max-width: 768px) {
+      .menu-toggle {
+        display: flex;
+      }
+
+      .nav-links {
+        width: 100%;
+        flex-direction: column;
+        display: none;
+        margin-top: 15px;
+      }
+
+      .nav-links.active {
+        display: flex;
+      }
+
+      nav ul {
+        flex-direction: column;
+        gap: 10px;
+        width: 100%;
+      }
+
+      .auth-buttons {
+        flex-direction: column;
+        gap: 10px;
+        align-items: flex-start;
+      }
     }
 
     /* Hero Section */
     .hero {
-      padding: 80px 30px;
+      padding: 60px 20px;
       text-align: center;
       background: linear-gradient(to right, #e8f5e9, #ffffff);
     }
 
     .hero h1 {
-      font-size: 3rem;
+      font-size: 2.8rem;
       color: #2e7d32;
       margin-bottom: 20px;
     }
 
     .hero p {
       font-size: 1.1rem;
-      max-width: 750px;
+      max-width: 800px;
       margin: auto;
       color: #555;
       line-height: 1.6;
@@ -128,21 +168,32 @@
       background: #276b45;
     }
 
+    .cta-btn a {
+      display: inline-block;
+      text-decoration: none;
+      background: #2e8b57;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 25px;
+      transition: 0.3s;
+      font-size: 0.9rem;
+    }
+
     /* Features Section */
     .features {
-      padding: 60px 40px;
+      padding: 60px 20px;
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
-      gap: 35px;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 30px;
     }
 
     .card {
       background: white;
       padding: 25px;
-      border-radius: 20px;
+      border-radius: 16px;
       box-shadow: 0 6px 15px rgba(0,0,0,0.1);
-      transition: 0.3s;
       text-align: center;
+      transition: 0.3s;
     }
 
     .card:hover {
@@ -152,7 +203,7 @@
 
     .card h3 {
       color: #2e8b57;
-      font-size: 1.4rem;
+      font-size: 1.3rem;
       margin-bottom: 10px;
     }
 
@@ -171,14 +222,13 @@
       padding: 10px 20px;
       border-radius: 25px;
       transition: 0.3s;
-      font-size: 0.95rem;
+      font-size: 0.9rem;
     }
 
     .card a:hover {
       background: #276b45;
     }
 
-    /* Footer */
     footer {
       background: #2e8b57;
       color: #fff;
@@ -187,41 +237,20 @@
       margin-top: 60px;
       font-size: 0.95rem;
     }
-
-    @media (max-width: 768px) {
-      nav {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-
-      nav .nav-links {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 10px;
-        margin-top: 10px;
-      }
-
-      .hero h1 {
-        font-size: 2.2rem;
-      }
-    }
-    @media (max-width: 480px) {
-      .cta-btn {
-        padding: 10px 24px;
-        font-size: 0.9rem;
-      }
-    }    
   </style>
 </head>
 <body>
   <!-- Navbar -->
   <nav>
     <div class="logo">Farm Market</div>
-    <div class="nav-links">
+    <div class="menu-toggle" onclick="toggleMenu()">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <div class="nav-links" id="navLinks">
       <ul>
         <li><a href="{% url 'buyer_dashboard' %}">Home</a></li>
-      
-        <li><a class="nav-link" href="{% url 'crop_prices' %}">Pricing</a></li>
         <li><a href="{% url 'contact' %}">Contact</a></li>
         {% if user.is_authenticated and user.farmer_products.exists %}
         <li><a href="{% url 'farmer_orders' %}">My Orders</a></li>
@@ -243,7 +272,9 @@
   <section class="hero">
     <h1>Empowering Farmers with AI</h1>
     <p>Our platform connects farmers directly to buyers, provides real-time market insights, and reduces crop wastage using smart AI tools.</p>
-    <button class="cta-btn">Get Started</button>
+    <button class="cta-btn">
+      <a href="{% url 'product_list' %}">Get Started</a>
+    </button>
   </section>
 
   <!-- Features -->
@@ -274,5 +305,12 @@
     <p>&copy; 2025 Farm Market Platform. Designed to empower India's backbone — our farmers.</p>
   </footer>
 
+  <!-- JavaScript for toggle -->
+  <script>
+    function toggleMenu() {
+      const navLinks = document.getElementById("navLinks");
+      navLinks.classList.toggle("active");
+    }
+  </script>
 </body>
 </html>

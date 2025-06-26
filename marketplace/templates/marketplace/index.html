@@ -116,7 +116,7 @@
       line-height: 1.6;
     }
 
-    .cta-btn {
+    .cta-btn  {
       margin-top: 30px;
       padding: 14px 30px;
       background: #2e8b57;
@@ -132,7 +132,7 @@
       background: #276b45;
     }
 
-    /* Features */
+    /* Features Section */
     .features {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -239,8 +239,7 @@
       <ul>
         <li><a href="{% url 'home' %}">Home</a></li>
         <li><a href="{% url 'upload_product' %}">Register Product</a></li>
-        <li><a href="{% url 'my_products' %}">My Products</a></li>
-        <li><a href="{% url 'crop_prices' %}">Pricing</a></li>
+        <li> <a class="nav-link" href="{% url 'my_products' %}">My Products</a></li>
         <li><a href="{% url 'contact' %}">Contact</a></li>
         {% if user.is_authenticated and user.farmer_products.exists %}
           <li><a href="{% url 'farmer_orders' %}">My Orders</a></li>
@@ -262,7 +261,9 @@
   <section class="hero">
     <h1>Empowering Farmers with AI</h1>
     <p>Our platform connects farmers directly to buyers, provides real-time market insights, and reduces crop wastage using smart AI tools.</p>
-    <button class="cta-btn">Get Started</button>
+    <button class="cta-btn">
+      <a href="{% url 'product_list' %}">Get Started</a>
+    </button>
   </section>
 
   <!-- Features -->
