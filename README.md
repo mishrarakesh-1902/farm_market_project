@@ -73,7 +73,7 @@ python manage.py runserver
 ```
 ---
 ## Project Structure
-
+```
 farm_market_project/
 │
 ├── farm_market/           # Main Django App
@@ -89,7 +89,7 @@ farm_market_project/
 ├── db.sqlite3             # Dev database
 ├── manage.py
 └── requirements.txt
-
+```
 ---
 ## 📸 Screenshots
 ![image](https://github.com/user-attachments/assets/8eb508de-bba5-4aad-8c7a-a110482e4760)
