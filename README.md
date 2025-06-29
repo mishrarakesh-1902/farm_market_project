@@ -71,6 +71,7 @@ python manage.py migrate
 ```
 python manage.py runserver
 ```
+---
 ## Project Structure
 
 farm_market_project/
@@ -96,6 +97,7 @@ farm_market_project/
 ![image](https://github.com/user-attachments/assets/649dddcf-dec8-43d9-95d9-9073fbd3d522)
 ![image](https://github.com/user-attachments/assets/b06b29a3-2378-44a4-841e-2b9b4bcaeed2)
 
+---
 
 ## 🙋‍♂️ Author
 Rakesh Kumar Mishra
