@@ -1,6 +1,7 @@
 # 🌾 Farm Market - AI Powered Platform for Farmers
 
 [![Deployed on Render](https://img.shields.io/badge/Live-Demo-brightgreen)](https://farm-market-project-8.onrender.com/)
+
 [![Django](https://img.shields.io/badge/Built%20with-Django-092E20?logo=django)](https://www.djangoproject.com/)
 
 
