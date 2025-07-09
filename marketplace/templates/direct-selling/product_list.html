@@ -95,7 +95,6 @@
 </html> -->
 
 
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -167,7 +166,6 @@
             color: #2e7d32;
         }
 
-        /* Leaf icons in card corners */
         .leaf-icon {
             position: absolute;
             width: 35px;
@@ -207,12 +205,23 @@
             background-color: #1b5e20;
         }
 
+        .search-bar {
+            margin-bottom: 30px;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .search-input {
+            max-width: 400px;
+            width: 100%;
+        }
+
     </style>
 </head>
 <body>
     <nav class="navbar navbar-light bg-light mb-4">
        <div class="container">
-        
           <div class="home-button">
           {% if user.is_authenticated %}
           {% if user.userprofile.role == "farmer" %}
@@ -227,36 +236,46 @@
           {% endif %}
           </div>
           <div class="home-button">
-            <a href="{% url 'cart' %}"> View Cart</a>
+            <a href="{% url 'cart' %}">🛒 View Cart</a>
           </div>
        </div>
     </nav>
 
     <div class="container">
-        <h2 class="text-center mb-5">Explore Fresh Farm Products</h2>
+        <h2 class="text-center mb-4">Explore Fresh Farm Products</h2>
+
+        <!-- 🔍 Search Form -->
+        <form method="get" class="search-bar">
+            <input type="text" name="q" value="{{ request.GET.q }}" class="form-control search-input" placeholder="Search by product or farmer name">
+            <button type="submit" class="btn btn-success">Search</button>
+        </form>
+
+        <!-- 🛒 Product Cards -->
         <div class="row g-4">
             {% for product in products %}
                 <div class="col-12 col-sm-6 col-md-4 col-lg-3" data-aos="fade-up">
                     <div class="card agri-card h-100 shadow-sm">
-                        <!-- Leaf corner decorations -->
                         <img src="https://cdn-icons-png.flaticon.com/512/616/616408.png" class="leaf-icon leaf-top-left" alt="leaf">
                         <img src="https://cdn-icons-png.flaticon.com/512/616/616408.png" class="leaf-icon leaf-bottom-right" alt="leaf">
 
-                        <img src="{{ product.image.url }}" class="card-img-top" alt="{{ product.name }}">
+                        <img src="{{ product.images.first.image.url }}" alt="{{ product.name }}" class="img-fluid">
+
+                        <!-- <img src="{{ product.image.url }}" class="card-img-top" alt="{{ product.name }}"> -->
                         <div class="card-body d-flex flex-column">
                             <h5 class="card-title">{{ product.name }}</h5>
                             <p class="card-text mb-2">{{ product.description|truncatewords:15 }}</p>
+                            <p class="mb-1"><strong>Farmer:</strong> {{ product.seller.username }}</p>
                             <p class="mb-3"><strong>Price:</strong> ₹{{ product.price_per_unit }}</p>
-                            <div class="d-flex mt-auto" style="display: flex; gap: 15px;">
+                            <div class="d-flex mt-auto" style="gap: 15px;">
                                 <a href="{% url 'product_detail' product.pk %}" class="btn btn-view text-white">View Details</a>
-                                <a href="{% url 'add_to_cart' product.id %}" class="btn btn-primary">Add to Cart</a>
+                                <a href="{% url 'add_to_cart' product.id %}?next={{ request.get_full_path }}" class="btn btn-primary">Add to Cart</a>
 
                             </div>
                         </div>
                     </div>
                 </div>
             {% empty %}
-                <p class="text-center">No products available.</p>
+                <p class="text-center">No products found.</p>
             {% endfor %}
         </div>
     </div>
@@ -264,13 +283,7 @@
     <!-- AOS scripts -->
     <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
     <script>
-        AOS.init({
-            duration: 800,
-            once: true
-        });
+        AOS.init({ duration: 800, once: true });
     </script>
 </body>
 </html>
-
-
-
