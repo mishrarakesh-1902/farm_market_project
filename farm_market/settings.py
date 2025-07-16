@@ -77,8 +77,12 @@ WSGI_APPLICATION = 'farm_market.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'farmmarket_db',        # Create this manually or via MySQL Workbench
+        'USER': 'root',
+        'PASSWORD': 'Shalu@1902',  # Replace with your MySQL root password
+        'HOST': 'localhost',
+        'PORT': '3306',  # 👉 Important: Use 3307 instead of default 3306
     }
 }
 
