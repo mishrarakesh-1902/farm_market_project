@@ -11,8 +11,15 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 import os
 from pathlib import Path
-from dotenv import load_dotenv  # ✅ Added for local development
-load_dotenv()
+# ✅ Only use dotenv when NOT on Render
+if os.environ.get('RENDER') != 'true':
+    try:
+        from dotenv import load_dotenv
+        load_dotenv()
+    except ModuleNotFoundError:
+        pass
+
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
