@@ -47,8 +47,18 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'marketplace',
     'widget_tweaks',
+    'cloudinary',
+    'cloudinary_storage',
     
 ]
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+CLOUDINARY_STORAGE = {
+  'CLOUD_NAME': 'dqdjctrr9',
+  'API_KEY': '485743712242646',
+  'API_SECRET': 'ewKbc0pohIjglaOJ8YQaihpzZuY',
+}
+
+MEDIA_URL = '/media/'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
