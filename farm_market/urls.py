@@ -82,6 +82,8 @@ urlpatterns = [
     path('direct-selling/<int:pk>/', views.product_detail, name='product_detail'),
     path('product/edit/<int:product_id>/', views.edit_product, name='edit_product'),
 
+    # urls.py
+    path('delete-product/<int:product_id>/', views.delete_product, name='delete_product'),
 
     # Cart & Order
     path('add-to-cart/<int:product_id>/', views.add_to_cart, name='add_to_cart'),

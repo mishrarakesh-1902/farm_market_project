@@ -5,7 +5,6 @@
     <meta charset="UTF-8">
     <title>My Products</title>
     <style>
-        /* Home button styling */
         .home-button {
             text-align: right;
             margin-bottom: 20px;
@@ -47,7 +46,6 @@
                 <a href="{% url 'home' %}">🏠 Home</a>
             {% endif %}
             </div>
-
         </div>
 
         <!-- Product Table -->
@@ -67,11 +65,17 @@
                         <td class="px-6 py-4 font-medium">{{ product.name }}</td>
                         <td class="px-6 py-4">₹{{ product.price_per_unit }}</td>
                         <td class="px-6 py-4">{{ product.quantity }}</td>
-                       <td class="px-6 py-4">
+                        <td class="px-6 py-4 space-x-2">
                             <a href="{% url 'edit_product' product.id %}" class="inline-block bg-blue-500 hover:bg-blue-600 text-white text-sm font-semibold py-1.5 px-4 rounded-full shadow transition duration-200">
-                                    ✏️ Edit
+                                ✏️ Edit
                             </a>
-                       </td>
+                            <form action="{% url 'delete_product' product.id %}" method="POST" class="inline-block" onsubmit="return confirm('Are you sure you want to delete this product?');">
+                                {% csrf_token %}
+                                <button type="submit" class="bg-red-500 hover:bg-red-600 text-white text-sm font-semibold py-1.5 px-4 rounded-full shadow transition duration-200">
+                                    🗑️ Delete
+                                </button>
+                            </form>
+                        </td>
                     </tr>
                     {% empty %}
                     <tr>

@@ -649,6 +649,13 @@ def product_list(request):
         )
     return render(request, 'direct-selling/product_list.html', {'products': products, 'form': form})
 
+
+@login_required
+def delete_product(request, product_id):
+    product = get_object_or_404(Product, id=product_id, farmer=request.user)
+    product.delete()
+    return redirect('my_products')  # make sure 'my_products' is your name in urls.py
+
 @login_required
 @require_http_methods(["GET", "POST"])
 def product_detail(request, pk):
