@@ -31,10 +31,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-z8%kj_kgsxazhzg5d5#4w_^)3v88!pi!w419v@f412qq#td!xe'
+SECRET_KEY = config('SECRET_KEY')
+
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['farm-market-project-8.onrender.com', 'localhost', '127.0.0.1']
 
@@ -51,16 +52,10 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'marketplace',
     'widget_tweaks',
-    'cloudinary',
-    'cloudinary_storage',
+    
     
 ]
-DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
-CLOUDINARY_STORAGE = {
-  'CLOUD_NAME': 'dqdjctrr9',
-  'API_KEY': '485743712242646',
-  'API_SECRET': 'ewKbc0pohIjglaOJ8YQaihpzZuY',
-}
+
 
 MEDIA_URL = '/media/'
 
