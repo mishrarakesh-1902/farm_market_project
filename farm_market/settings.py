@@ -35,7 +35,7 @@ SECRET_KEY = config('SECRET_KEY')
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['farm-market-project-8.onrender.com', 'localhost', '127.0.0.1']
 
@@ -52,9 +52,17 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'marketplace',
     'widget_tweaks',
+    'cloudinary',
+    'cloudinary_storage',
     
     
 ]
+
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': 'dqdjctrr9',
+    'API_KEY': '485743712242646',
+    'API_SECRET': 'ewKbc0pohIjglaOJ8YQaihpzZuY',
+}
 
 
 MEDIA_URL = '/media/'
@@ -151,3 +159,4 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
