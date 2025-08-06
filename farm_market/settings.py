@@ -11,6 +11,9 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 import os
 from pathlib import Path
+from decouple import config  # NEW
+
+import dj_database_url
 # ✅ Only use dotenv when NOT on Render
 if os.environ.get('RENDER') != 'true':
     try:
@@ -34,6 +37,7 @@ SECRET_KEY = 'django-insecure-z8%kj_kgsxazhzg5d5#4w_^)3v88!pi!w419v@f412qq#td!xe
 DEBUG = True
 
 ALLOWED_HOSTS = ['farm-market-project-8.onrender.com', 'localhost', '127.0.0.1']
+
 
 
 # Application definition
@@ -94,11 +98,14 @@ WSGI_APPLICATION = 'farm_market.wsgi.application'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+    'default': dj_database_url.config(
+        default=config('DATABASE_URL'),  # Now pulled from .env
+        conn_max_age=600,
+        ssl_require=True
+    )
 }
+
+
 
 
 AUTH_PROFILE_MODULE = 'marketplace.UserProfile'
