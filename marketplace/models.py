@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from decimal import Decimal
-
+from cloudinary.models import CloudinaryField
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     role = models.CharField(max_length=10, choices=(('farmer', 'Farmer'), ('buyer', 'Buyer')))
@@ -81,12 +81,22 @@ class Product(models.Model):
 
 
 # ✅ New: For Multiple Images per Product
+# class ProductImage(models.Model):
+#     product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='images')
+#     image = models.ImageField(upload_to='product_images/')
+
+#     def __str__(self):
+#         return f"Image for {self.product.name}"
+
 class ProductImage(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='images')
-    image = models.ImageField(upload_to='product_images/')
+    image = CloudinaryField('image')  # ✅ Cloudinary storage
 
     def __str__(self):
         return f"Image for {self.product.name}"
+
+
+
 
 
 # ✅ Updated: Unit field added

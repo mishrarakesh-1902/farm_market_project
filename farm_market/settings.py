@@ -14,13 +14,16 @@ from pathlib import Path
 from decouple import config  # NEW
 
 import dj_database_url
-# ✅ Only use dotenv when NOT on Render
-if os.environ.get('RENDER') != 'true':
-    try:
-        from dotenv import load_dotenv
-        load_dotenv()
-    except ModuleNotFoundError:
-        pass
+# # ✅ Only use dotenv when NOT on Render
+# if os.environ.get('RENDER') != 'true':
+#     try:
+#         from dotenv import load_dotenv
+#         load_dotenv()
+#     except ModuleNotFoundError:
+#         pass
+from dotenv import load_dotenv
+
+load_dotenv()  # Load environment variables from .env file
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -35,7 +38,7 @@ SECRET_KEY = config('SECRET_KEY')
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['farm-market-project-8.onrender.com', 'localhost', '127.0.0.1']
 
@@ -58,12 +61,6 @@ INSTALLED_APPS = [
     
 ]
 
-CLOUDINARY_STORAGE = {
-    'CLOUD_NAME': 'dqdjctrr9',
-    'API_KEY': '485743712242646',
-    'API_SECRET': 'ewKbc0pohIjglaOJ8YQaihpzZuY',
-}
-DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
 # MEDIA_URL = '/media/'
 
@@ -101,12 +98,10 @@ WSGI_APPLICATION = 'farm_market.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
+
+DATABASE_URL = os.getenv('DATABASE_URL')
 DATABASES = {
-    'default': dj_database_url.config(
-        default=config('DATABASE_URL'),  # Now pulled from .env
-        conn_max_age=600,
-        ssl_require=True
-    )
+    'default': dj_database_url.config(default=DATABASE_URL, conn_max_age=600)
 }
 
 
@@ -148,8 +143,7 @@ USE_I18N = True
 
 USE_TZ = True
 
-# MEDIA_URL = '/media/'
-# MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
@@ -158,5 +152,17 @@ STATIC_URL = 'static/'
 # STATICFILES_DIRS = [BASE_DIR / 'static']
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
+
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': os.getenv('CLOUDINARY_CLOUD_NAME'),
+    'API_KEY': os.getenv('CLOUDINARY_API_KEY'),
+    'API_SECRET': os.getenv('CLOUDINARY_API_SECRET'),
+}
+
+
+# MEDIA_URL = '/media/'
+# MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
