@@ -12,7 +12,9 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 import os
 from pathlib import Path
 from decouple import config  # NEW
-
+import cloudinary
+import cloudinary.uploader
+import cloudinary.api
 import dj_database_url
 # # ✅ Only use dotenv when NOT on Render
 # if os.environ.get('RENDER') != 'true':
@@ -62,7 +64,7 @@ INSTALLED_APPS = [
 ]
 
 
-# MEDIA_URL = '/media/'
+MEDIA_URL = '/media/'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
