@@ -108,9 +108,12 @@ farm_market/
 
 ---
 
-## 📸 Screenshots  
-"C:\Users\mishr\OneDrive\Pictures\Screenshots\Screenshot 2025-09-01 020157.png"
-![Uploading Screenshot 2025-09-01 020157.png…]()
+## 📸 Screenshots 
+
+<img width="1919" height="924" alt="Screenshot 2025-09-01 021830" src="https://github.com/user-attachments/assets/b9cb8338-da03-4642-abb5-a42a679913ba" />
+<img width="1918" height="928" alt="Screenshot 2025-09-01 015452" src="https://github.com/user-attachments/assets/2c88c0d6-3de6-48c1-ae0e-623e6266ed18" />
+
+<img width="1916" height="926" alt="Screenshot 2025-09-01 020157" src="https://github.com/user-attachments/assets/88c7a93b-434e-4ecc-9c89-88bb73738f04" />
 
 
 
