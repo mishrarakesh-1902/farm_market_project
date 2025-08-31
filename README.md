@@ -105,11 +105,12 @@ farm_market/
 │── requirements.txt    # Dependencies
 ```
 
----
+
 
 ## 📸 Screenshots  
- 
-<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/add653b4-025e-4ec7-aa9c-ede962f1d20e" />
+
+![Uploading image.png…]()
+
 
 ---
 
