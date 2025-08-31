@@ -108,8 +108,7 @@ farm_market/
 ---
 
 ## 📸 Screenshots  
-
-*(Add screenshots of your Farmer dashboard, Buyer portal, Crop prediction, etc.)*  
+ 
 
 ---
 
