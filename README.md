@@ -1,3 +1,4 @@
+<img width="1916" height="926" alt="Screenshot 2025-09-01 020157" src="https://github.com/user-attachments/assets/88c7a93b-434e-4ecc-9c89-88bb73738f04" />
 # 🌾 Farm Market – Django-Based Digital Platform for Farmers  
 
 ![License](https://img.shields.io/badge/license-MIT-green)  
