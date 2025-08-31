@@ -105,7 +105,7 @@ farm_market/
 │── requirements.txt    # Dependencies
 ```
 
-
+---
 
 ## 📸 Screenshots  
 
